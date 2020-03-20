@@ -1,6 +1,6 @@
 <?php
 declare (strict_types = 1);
-namespace App\modelos;
+namespace App\modelo;
 
 use App\modelos\ModeloBase;
 
@@ -8,9 +8,9 @@ use App\modelos\ModeloBase;
 /*******************************************************************************
 * Class Name:       Cp_codigopostal
 * File Name:        Cp_codigopostal.php
-* Generated:        Friday, Nov 15, 2019 - 10:59:44 UTC
+* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
 *  - for Table:     cp_codigopostal
-*   - in Database:  contabilidadautonomo
+*   - in Database:  contabilidadautonomos
 * Created by: table2class 
 ********************************************************************************/
 
@@ -94,10 +94,10 @@ class Cp_codigopostal extends ModeloBase{
 	// Construye desde array
 	public static function setFromArray (array $datos) : Cp_codigopostal {
 		$resp = new self ();
-		$resp->setId ($datos['id']);
-		$resp->setCpcod_cpostal ($datos['cpcod_cpostal']);
-		$resp->setCppob_id ($datos['cppob_id']);
-		$resp->setCppro_id ($datos['cppro_id']);
+		$resp->setId ( (int) $datos['id']);
+		$resp->setCpcod_cpostal ( (int) $datos['cpcod_cpostal']);
+		$resp->setCppob_id ( (int) $datos['cppob_id']);
+		$resp->setCppro_id ( (int) $datos['cppro_id']);
 		return $resp;
 	}
 	

@@ -1,14 +1,16 @@
 <?php
 declare (strict_types = 1);
-namespace App\modelos;
+namespace App\modelo;
+
+use App\modelos\ModeloBase;
 
 
 /*******************************************************************************
 * Class Name:       Cp_provincias
 * File Name:        Cp_provincias.php
-* Generated:        Friday, Nov 15, 2019 - 9:43:30 UTC
+* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
 *  - for Table:     cp_provincias
-*   - in Database:  contabilidadautonomo
+*   - in Database:  contabilidadautonomos
 * Created by: table2class 
 ********************************************************************************/
 
@@ -100,10 +102,10 @@ class Cp_provincias extends ModeloBase{
 	// Construye desde array
 	public static function setFromArray (array $datos) : Cp_provincias {
 		$resp = new self ();
-		$resp->setCppro_id ($datos['cppro_id']);
-		$resp->setCppro_nombre ($datos['cppro_nombre']);
-		$resp->setCppro_codca ($datos['cppro_codca']);
-		$resp->setCppro_capital ($datos['cppro_capital']);
+		$resp->setCppro_id ( (int) $datos['cppro_id']);
+		$resp->setCppro_nombre ( (string) $datos['cppro_nombre']);
+		$resp->setCppro_codca ( (int) $datos['cppro_codca']);
+		$resp->setCppro_capital ( (string) $datos['cppro_capital']);
 		return $resp;
 	}
 	

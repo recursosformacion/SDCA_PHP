@@ -1,14 +1,16 @@
 <?php
 declare (strict_types = 1);
-namespace App\modelos;
+namespace App\modelo;
+
+use App\modelos\ModeloBase;
 
 
 /*******************************************************************************
 * Class Name:       Cp_comunidades
 * File Name:        Cp_comunidades.php
-* Generated:        Friday, Nov 15, 2019 - 9:43:17 UTC
+* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
 *  - for Table:     cp_comunidades
-*   - in Database:  contabilidadautonomo
+*   - in Database:  contabilidadautonomos
 * Created by: table2class 
 ********************************************************************************/
 
@@ -89,9 +91,9 @@ class Cp_comunidades extends ModeloBase{
 	// Construye desde array
 	public static function setFromArray (array $datos) : Cp_comunidades {
 		$resp = new self ();
-		$resp->setCpcoa_id ((int) $datos['cpcoa_id']);
-		$resp->setCpcoa_nombre ($datos['cpcoa_nombre']);
-		$resp->setCpcoa_pais ((int) $datos['cpcoa_pais']);
+		$resp->setCpcoa_id ( (int) $datos['cpcoa_id']);
+		$resp->setCpcoa_nombre ( (string) $datos['cpcoa_nombre']);
+		$resp->setCpcoa_pais ( (int) $datos['cpcoa_pais']);
 		return $resp;
 	}
 	

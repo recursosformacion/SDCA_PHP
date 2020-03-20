@@ -1,6 +1,6 @@
 <?php
 declare (strict_types = 1);
-namespace App\modelos;
+namespace App\modelo;
 
 use App\modelos\ModeloBase;
 
@@ -8,9 +8,9 @@ use App\modelos\ModeloBase;
 /*******************************************************************************
 * Class Name:       Cp_poblacion
 * File Name:        Cp_poblacion.php
-* Generated:        Friday, Nov 15, 2019 - 9:48:50 UTC
+* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
 *  - for Table:     cp_poblacion
-*   - in Database:  contabilidadautonomo
+*   - in Database:  contabilidadautonomos
 * Created by: table2class 
 ********************************************************************************/
 
@@ -127,13 +127,13 @@ class Cp_poblacion extends ModeloBase{
 	// Construye desde array
 	public static function setFromArray (array $datos) : Cp_poblacion {
 		$resp = new self ();
-		$resp->setId ($datos['id']);
-		$resp->setCppob_id ($datos['cppob_id']);
-		$resp->setCppro_id ($datos['cppro_id']);
-		$resp->setCppob_nombre ($datos['cppob_nombre']);
-		$resp->setCppob_ineid ($datos['cppob_ineid']);
-		$resp->setCppob_lat ($datos['cppob_lat']);
-		$resp->setCppob_lon ($datos['cppob_lon']);
+		$resp->setId ( (int) $datos['id']);
+		$resp->setCppob_id ( (int) $datos['cppob_id']);
+		$resp->setCppro_id ( (int) $datos['cppro_id']);
+		$resp->setCppob_nombre ( (string) $datos['cppob_nombre']);
+		$resp->setCppob_ineid ( (int) $datos['cppob_ineid']);
+		$resp->setCppob_lat ( (float) $datos['cppob_lat']);
+		$resp->setCppob_lon ( (float) $datos['cppob_lon']);
 		return $resp;
 	}
 	

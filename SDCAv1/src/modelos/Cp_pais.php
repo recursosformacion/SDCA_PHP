@@ -1,16 +1,18 @@
 <?php
 declare (strict_types = 1);
-namespace modelos;
+namespace App\modelo;
 
 use App\modelos\ModeloBase;
+
+
 
 
 /*******************************************************************************
 * Class Name:       Cp_pais
 * File Name:        Cp_pais.php
-* Generated:        Friday, Nov 15, 2019 - 9:43:21 UTC
+* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
 *  - for Table:     cp_pais
-*   - in Database:  contabilidadautonomo
+*   - in Database:  contabilidadautonomos
 * Created by: table2class 
 ********************************************************************************/
 
@@ -168,16 +170,16 @@ class Cp_pais extends ModeloBase{
 	// Construye desde array
 	public static function setFromArray (array $datos) : Cp_pais {
 		$resp = new self ();
-		$resp->setCountry_id ($datos['country_id']);
-		$resp->setIso2 ($datos['iso2']);
-		$resp->setShort_name ($datos['short_name']);
-		$resp->setSpanish_name ($datos['spanish_name']);
-		$resp->setCalling_code ($datos['calling_code']);
-		$resp->setCctld ($datos['cctld']);
-		$resp->setIso3 ($datos['iso3']);
-		$resp->setLong_name ($datos['long_name']);
-		$resp->setNumcode ($datos['numcode']);
-		$resp->setUn_member ($datos['un_member']);
+		$resp->setCountry_id ( (int) $datos['country_id']);
+		$resp->setIso2 ( (string) $datos['iso2']);
+		$resp->setShort_name ( (string) $datos['short_name']);
+		$resp->setSpanish_name ( (string) $datos['spanish_name']);
+		$resp->setCalling_code ( (string) $datos['calling_code']);
+		$resp->setCctld ( (string) $datos['cctld']);
+		$resp->setIso3 ( (string) $datos['iso3']);
+		$resp->setLong_name ( (string) $datos['long_name']);
+		$resp->setNumcode ( (int) $datos['numcode']);
+		$resp->setUn_member ( (string) $datos['un_member']);
 		return $resp;
 	}
 	
