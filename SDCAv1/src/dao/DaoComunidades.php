@@ -20,18 +20,19 @@ use PDOStatement;
 class DaoComunidades extends DaoBase{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM cp_comunidades  ORDER BY cpcoa_nombre";
+	const SELECT_ALL   = "SELECT * FROM cp_comunidades  ORDER BY cpcoa_nombre";
 	const SELECT_WHERE = "SELECT * FROM FROM cp_comunidades WHERE :where  ORDER BY cpcoa_nombre";
-	const SELECT_UNO = "SELECT * FROM  cp_comunidades  WHERE cpcoa_id = :id";
-	const INSERTAR = "INSERT into cp_comunidades values (cpcoa_id,cpcoa_nombre,cpcoa_pais,)";
-	const ACTUALIZA = "UPDATE cp_comunidades  set cpcoa_nombre= :cpcoa_nombre,cpcoa_pais= :cpcoa_pais,
+	const SELECT_UNO   = "SELECT * FROM  cp_comunidades  WHERE cpcoa_id = :id";
+	const INSERTAR     = "INSERT into cp_comunidades values (cpcoa_id,cpcoa_nombre,cpcoa_pais,)";
+	const ACTUALIZA    = "UPDATE cp_comunidades  set cpcoa_nombre= :cpcoa_nombre,cpcoa_pais= :cpcoa_pais,
                                         WHERE cpcoa_id = :id ";
-	const DELETE = "DELETE FROM cp_comunidades WHERE cpcoa_id = :id";
+	const DELETE       = "DELETE FROM cp_comunidades WHERE cpcoa_id = :id";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Cp_comunidades");
+		parent::__construct ("App\modelos\Cp_comunidades");
+		var_dump("Open hecho");
 	}
 	
 	// Class Destructor
