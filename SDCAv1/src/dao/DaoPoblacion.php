@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoPoblacion
 * File Name:        DaoPoblacion.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     cp_poblacion
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoPoblacion"
-class DaoPoblacion extends DaoBase{
+class DaoPoblacion extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM cp_poblacion  ORDER BY cppob_id";
-	const SELECT_WHERE = "SELECT * FROM FROM cp_poblacion WHERE :where  ORDER BY cppob_id";
-	const SELECT_UNO = "SELECT * FROM  cp_poblacion  WHERE id = :id";
-	const INSERTAR = "INSERT into cp_poblacion values (id,cppob_id,cppro_id,cppob_nombre,cppob_ineid,cppob_lat,cppob_lon,)";
-	const ACTUALIZA = "UPDATE cp_poblacion  set cppob_id= :cppob_id,cppro_id= :cppro_id,cppob_nombre= :cppob_nombre,cppob_ineid= :cppob_ineid,cppob_lat= :cppob_lat,cppob_lon= :cppob_lon,
-                                        WHERE id = :id ";
-	const DELETE = "DELETE FROM cp_poblacion WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM cp_poblacion  ORDER BY cppob_id";
+	const SELECT_WHERE	 = "SELECT * FROM FROM cp_poblacion WHERE :where  ORDER BY cppob_id";
+	const SELECT_UNO 	 = "SELECT * FROM  cp_poblacion  WHERE id = :id ";
+	const INSERTAR 	 = "INSERT into cp_poblacion values (:id,:cppob_id,:cppro_id,:cppob_nombre,:cppob_ineid,:cppob_lat,:cppob_lon)";
+	const ACTUALIZA 	 = "UPDATE cp_poblacion  set cppob_id= :cppob_id,cppro_id= :cppro_id,cppob_nombre= :cppob_nombre,cppob_ineid= :cppob_ineid,cppob_lat= :cppob_lat,cppob_lon= :cppob_lon
+                                        WHERE id = :id  ";
+	const DELETE 	 = "DELETE FROM cp_poblacion WHERE id = :id ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Cp_poblacion");
+		parent::__construct ("App\modelos\Cp_poblacion");
 	}
 	
 	// Class Destructor
@@ -49,6 +52,7 @@ class DaoPoblacion extends DaoBase{
 		$stmt->bindValue (':cppob_ineid', $modelo->getCppob_ineid ());
 		$stmt->bindValue (':cppob_lat', $modelo->getCppob_lat ());
 		$stmt->bindValue (':cppob_lon', $modelo->getCppob_lon ());
+		
 		
 		return $stmt;
 	}
@@ -71,7 +75,6 @@ class DaoPoblacion extends DaoBase{
 		$stmt = str_replace (':cppob_ineid', $modelo->getCppob_ineid (),$stmt);
 		$stmt = str_replace (':cppob_lat', $modelo->getCppob_lat (),$stmt);
 		$stmt = str_replace (':cppob_lon', $modelo->getCppob_lon (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId (),$stmt);
 		
 		return $stmt;
 	}

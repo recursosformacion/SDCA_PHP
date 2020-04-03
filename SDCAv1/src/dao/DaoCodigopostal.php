@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoCodigopostal
 * File Name:        DaoCodigopostal.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     cp_codigopostal
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoCodigopostal"
-class DaoCodigopostal extends DaoBase{
+class DaoCodigopostal extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM cp_codigopostal  ORDER BY cpcod_cpostal";
-	const SELECT_WHERE = "SELECT * FROM FROM cp_codigopostal WHERE :where  ORDER BY cpcod_cpostal";
-	const SELECT_UNO = "SELECT * FROM  cp_codigopostal  WHERE id = :id";
-	const INSERTAR = "INSERT into cp_codigopostal values (id,cpcod_cpostal,cppob_id,cppro_id,)";
-	const ACTUALIZA = "UPDATE cp_codigopostal  set cpcod_cpostal= :cpcod_cpostal,cppob_id= :cppob_id,cppro_id= :cppro_id,
-                                        WHERE id = :id ";
-	const DELETE = "DELETE FROM cp_codigopostal WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM cp_codigopostal  ORDER BY cpcod_cpostal";
+	const SELECT_WHERE	 = "SELECT * FROM FROM cp_codigopostal WHERE :where  ORDER BY cpcod_cpostal";
+	const SELECT_UNO 	 = "SELECT * FROM  cp_codigopostal  WHERE id = :id ";
+	const INSERTAR 	 = "INSERT into cp_codigopostal values (:id,:cpcod_cpostal,:cppob_id,:cppro_id)";
+	const ACTUALIZA 	 = "UPDATE cp_codigopostal  set cpcod_cpostal= :cpcod_cpostal,cppob_id= :cppob_id,cppro_id= :cppro_id
+                                        WHERE id = :id  ";
+	const DELETE 	 = "DELETE FROM cp_codigopostal WHERE id = :id ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Cp_codigopostal");
+		parent::__construct ("App\modelos\Cp_codigopostal");
 	}
 	
 	// Class Destructor
@@ -46,6 +49,7 @@ class DaoCodigopostal extends DaoBase{
 		$stmt->bindValue (':cpcod_cpostal', $modelo->getCpcod_cpostal ());
 		$stmt->bindValue (':cppob_id', $modelo->getCppob_id ());
 		$stmt->bindValue (':cppro_id', $modelo->getCppro_id ());
+		
 		
 		return $stmt;
 	}
@@ -65,7 +69,6 @@ class DaoCodigopostal extends DaoBase{
 		$stmt = str_replace (':cpcod_cpostal', $modelo->getCpcod_cpostal (),$stmt);
 		$stmt = str_replace (':cppob_id', $modelo->getCppob_id (),$stmt);
 		$stmt = str_replace (':cppro_id', $modelo->getCppro_id (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId (),$stmt);
 		
 		return $stmt;
 	}

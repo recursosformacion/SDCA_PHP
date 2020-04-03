@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoCliente
 * File Name:        DaoCliente.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     tipo_cliente
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoCliente"
-class DaoCliente extends DaoBase{
+class DaoCliente extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM tipo_cliente  ORDER BY tc_nombre_tipo";
-	const SELECT_WHERE = "SELECT * FROM FROM tipo_cliente WHERE :where  ORDER BY tc_nombre_tipo";
-	const SELECT_UNO = "SELECT * FROM  tipo_cliente  WHERE id_tipocliente = :id";
-	const INSERTAR = "INSERT into tipo_cliente values (id_tipocliente,tc_nombre_tipo,tc_nombre_descripcion,)";
-	const ACTUALIZA = "UPDATE tipo_cliente  set tc_nombre_tipo= :tc_nombre_tipo,tc_nombre_descripcion= :tc_nombre_descripcion,
-                                        WHERE id_tipocliente = :id ";
-	const DELETE = "DELETE FROM tipo_cliente WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM tipo_cliente  ORDER BY tc_nombre_tipo";
+	const SELECT_WHERE	 = "SELECT * FROM FROM tipo_cliente WHERE :where  ORDER BY tc_nombre_tipo";
+	const SELECT_UNO 	 = "SELECT * FROM  tipo_cliente  WHERE id_tipocliente = :id_tipocliente ";
+	const INSERTAR 	 = "INSERT into tipo_cliente values (:id_tipocliente,:tc_nombre_tipo,:tc_nombre_descripcion)";
+	const ACTUALIZA 	 = "UPDATE tipo_cliente  set tc_nombre_tipo= :tc_nombre_tipo,tc_nombre_descripcion= :tc_nombre_descripcion
+                                        WHERE id_tipocliente = :id_tipocliente  ";
+	const DELETE 	 = "DELETE FROM tipo_cliente WHERE id_tipocliente = :id_tipocliente ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Tipo_cliente");
+		parent::__construct ("App\modelos\Tipo_cliente");
 	}
 	
 	// Class Destructor
@@ -46,13 +49,14 @@ class DaoCliente extends DaoBase{
 		$stmt->bindValue (':tc_nombre_tipo', $modelo->getTc_nombre_tipo ());
 		$stmt->bindValue (':tc_nombre_descripcion', $modelo->getTc_nombre_descripcion ());
 		
+		
 		return $stmt;
 	}
 	
 	// Montar para DELETE SQL
 	public function montaBindDel (string $orden, $modelo): PDOStatement {
 		$stmt = $this->pdo->prepare ($orden);
-		$stmt->bindValue (':id', $modelo->getId_tipocliente ());
+		$stmt->bindValue (':id_tipocliente', $modelo->getId_tipocliente ());
 		
 		return $stmt;
 	}
@@ -63,7 +67,6 @@ class DaoCliente extends DaoBase{
 		$stmt = str_replace (':id_tipocliente', $modelo->getId_tipocliente (),$stmt);
 		$stmt = str_replace (':tc_nombre_tipo', $modelo->getTc_nombre_tipo (),$stmt);
 		$stmt = str_replace (':tc_nombre_descripcion', $modelo->getTc_nombre_descripcion (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId_tipocliente (),$stmt);
 		
 		return $stmt;
 	}

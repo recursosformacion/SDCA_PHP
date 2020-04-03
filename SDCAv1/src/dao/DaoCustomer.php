@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoCustomer
 * File Name:        DaoCustomer.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     customer
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoCustomer"
-class DaoCustomer extends DaoBase{
+class DaoCustomer extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM customer  ORDER BY password";
-	const SELECT_WHERE = "SELECT * FROM FROM customer WHERE :where  ORDER BY password";
-	const SELECT_UNO = "SELECT * FROM  customer  WHERE id = :id";
-	const INSERTAR = "INSERT into customer values (id,password,token,user_name,)";
-	const ACTUALIZA = "UPDATE customer  set password= :password,token= :token,user_name= :user_name,
-                                        WHERE id = :id ";
-	const DELETE = "DELETE FROM customer WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM customer  ORDER BY password";
+	const SELECT_WHERE	 = "SELECT * FROM FROM customer WHERE :where  ORDER BY password";
+	const SELECT_UNO 	 = "SELECT * FROM  customer  WHERE id = :id ";
+	const INSERTAR 	 = "INSERT into customer values (:id,:password,:token,:user_name)";
+	const ACTUALIZA 	 = "UPDATE customer  set password= :password,token= :token,user_name= :user_name
+                                        WHERE id = :id  ";
+	const DELETE 	 = "DELETE FROM customer WHERE id = :id ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Customer");
+		parent::__construct ("App\modelos\Customer");
 	}
 	
 	// Class Destructor
@@ -46,6 +49,7 @@ class DaoCustomer extends DaoBase{
 		$stmt->bindValue (':password', $modelo->getPassword ());
 		$stmt->bindValue (':token', $modelo->getToken ());
 		$stmt->bindValue (':user_name', $modelo->getUser_name ());
+		
 		
 		return $stmt;
 	}
@@ -65,7 +69,6 @@ class DaoCustomer extends DaoBase{
 		$stmt = str_replace (':password', $modelo->getPassword (),$stmt);
 		$stmt = str_replace (':token', $modelo->getToken (),$stmt);
 		$stmt = str_replace (':user_name', $modelo->getUser_name (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId (),$stmt);
 		
 		return $stmt;
 	}

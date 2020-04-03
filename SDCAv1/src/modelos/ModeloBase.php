@@ -1,7 +1,6 @@
 <?php
 namespace App\modelos;
 
-use App\service\RutinasXml;
 
 abstract Class  ModeloBase
 {
@@ -32,10 +31,10 @@ abstract Class  ModeloBase
     public static abstract function getNombreId():string;
     public static abstract function getNombreTabla():string;
 
-    public function getXml(): string
-    {
-        $miXML=RutinasXml::arrayToXML($this->getArray(), $this->getModelo());
-        return $miXML;
-    }
+//     public function getXml(): string
+//     {
+//         $miXML=RutinasXml::arrayToXML($this->getArray(), $this->getModelo());
+//         return $miXML;
+//     }
 }
 

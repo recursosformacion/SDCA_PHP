@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoRecibidas
 * File Name:        DaoRecibidas.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     facturas_recibidas
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoRecibidas"
-class DaoRecibidas extends DaoBase{
+class DaoRecibidas extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM facturas_recibidas  ORDER BY fr_identificador";
-	const SELECT_WHERE = "SELECT * FROM FROM facturas_recibidas WHERE :where  ORDER BY fr_identificador";
-	const SELECT_UNO = "SELECT * FROM  facturas_recibidas  WHERE id_facturas = :id";
-	const INSERTAR = "INSERT into facturas_recibidas values (id_facturas,fr_identificador,fr_fecha,id_proveedor,fr_importebase,fr_porrecargoequiv,fr_poriva,fr_vencimiento,fr_comentarios,)";
-	const ACTUALIZA = "UPDATE facturas_recibidas  set fr_identificador= :fr_identificador,fr_fecha= :fr_fecha,id_proveedor= :id_proveedor,fr_importebase= :fr_importebase,fr_porrecargoequiv= :fr_porrecargoequiv,fr_poriva= :fr_poriva,fr_vencimiento= :fr_vencimiento,fr_comentarios= :fr_comentarios,
-                                        WHERE id_facturas = :id ";
-	const DELETE = "DELETE FROM facturas_recibidas WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM facturas_recibidas  ORDER BY fr_identificador";
+	const SELECT_WHERE	 = "SELECT * FROM FROM facturas_recibidas WHERE :where  ORDER BY fr_identificador";
+	const SELECT_UNO 	 = "SELECT * FROM  facturas_recibidas  WHERE id_facturas = :id_facturas ";
+	const INSERTAR 	 = "INSERT into facturas_recibidas values (:id_facturas,:fr_identificador,:fr_fecha,:id_proveedor,:fr_importebase,:fr_porrecargoequiv,:fr_poriva,:fr_vencimiento,:fr_comentarios)";
+	const ACTUALIZA 	 = "UPDATE facturas_recibidas  set fr_identificador= :fr_identificador,fr_fecha= :fr_fecha,id_proveedor= :id_proveedor,fr_importebase= :fr_importebase,fr_porrecargoequiv= :fr_porrecargoequiv,fr_poriva= :fr_poriva,fr_vencimiento= :fr_vencimiento,fr_comentarios= :fr_comentarios
+                                        WHERE id_facturas = :id_facturas  ";
+	const DELETE 	 = "DELETE FROM facturas_recibidas WHERE id_facturas = :id_facturas ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Facturas_recibidas");
+		parent::__construct ("App\modelos\Facturas_recibidas");
 	}
 	
 	// Class Destructor
@@ -52,13 +55,14 @@ class DaoRecibidas extends DaoBase{
 		$stmt->bindValue (':fr_vencimiento', $modelo->getFr_vencimiento ());
 		$stmt->bindValue (':fr_comentarios', $modelo->getFr_comentarios ());
 		
+		
 		return $stmt;
 	}
 	
 	// Montar para DELETE SQL
 	public function montaBindDel (string $orden, $modelo): PDOStatement {
 		$stmt = $this->pdo->prepare ($orden);
-		$stmt->bindValue (':id', $modelo->getId_facturas ());
+		$stmt->bindValue (':id_facturas', $modelo->getId_facturas ());
 		
 		return $stmt;
 	}
@@ -75,7 +79,6 @@ class DaoRecibidas extends DaoBase{
 		$stmt = str_replace (':fr_poriva', $modelo->getFr_poriva (),$stmt);
 		$stmt = str_replace (':fr_vencimiento', $modelo->getFr_vencimiento (),$stmt);
 		$stmt = str_replace (':fr_comentarios', $modelo->getFr_comentarios (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId_facturas (),$stmt);
 		
 		return $stmt;
 	}

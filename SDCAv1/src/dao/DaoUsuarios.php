@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoUsuarios
 * File Name:        DaoUsuarios.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     co_usuarios
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoUsuarios"
-class DaoUsuarios extends DaoBase{
+class DaoUsuarios extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM co_usuarios  ORDER BY cou_nombre";
-	const SELECT_WHERE = "SELECT * FROM FROM co_usuarios WHERE :where  ORDER BY cou_nombre";
-	const SELECT_UNO = "SELECT * FROM  co_usuarios  WHERE id_usuario = :id";
-	const INSERTAR = "INSERT into co_usuarios values (id_usuario,cou_nombre,cou_mnemonico,cou_mail,cou_password,)";
-	const ACTUALIZA = "UPDATE co_usuarios  set cou_nombre= :cou_nombre,cou_mnemonico= :cou_mnemonico,cou_mail= :cou_mail,cou_password= :cou_password,
-                                        WHERE id_usuario = :id ";
-	const DELETE = "DELETE FROM co_usuarios WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM co_usuarios  ORDER BY cou_nombre";
+	const SELECT_WHERE	 = "SELECT * FROM FROM co_usuarios WHERE :where  ORDER BY cou_nombre";
+	const SELECT_UNO 	 = "SELECT * FROM  co_usuarios  WHERE id_usuario = :id_usuario ";
+	const INSERTAR 	 = "INSERT into co_usuarios values (:id_usuario,:cou_nombre,:cou_mnemonico,:cou_mail,:cou_password)";
+	const ACTUALIZA 	 = "UPDATE co_usuarios  set cou_nombre= :cou_nombre,cou_mnemonico= :cou_mnemonico,cou_mail= :cou_mail,cou_password= :cou_password
+                                        WHERE id_usuario = :id_usuario  ";
+	const DELETE 	 = "DELETE FROM co_usuarios WHERE id_usuario = :id_usuario ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Co_usuarios");
+		parent::__construct ("App\modelos\Co_usuarios");
 	}
 	
 	// Class Destructor
@@ -48,13 +51,14 @@ class DaoUsuarios extends DaoBase{
 		$stmt->bindValue (':cou_mail', $modelo->getCou_mail ());
 		$stmt->bindValue (':cou_password', $modelo->getCou_password ());
 		
+		
 		return $stmt;
 	}
 	
 	// Montar para DELETE SQL
 	public function montaBindDel (string $orden, $modelo): PDOStatement {
 		$stmt = $this->pdo->prepare ($orden);
-		$stmt->bindValue (':id', $modelo->getId_usuario ());
+		$stmt->bindValue (':id_usuario', $modelo->getId_usuario ());
 		
 		return $stmt;
 	}
@@ -67,7 +71,6 @@ class DaoUsuarios extends DaoBase{
 		$stmt = str_replace (':cou_mnemonico', $modelo->getCou_mnemonico (),$stmt);
 		$stmt = str_replace (':cou_mail', $modelo->getCou_mail (),$stmt);
 		$stmt = str_replace (':cou_password', $modelo->getCou_password (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId_usuario (),$stmt);
 		
 		return $stmt;
 	}

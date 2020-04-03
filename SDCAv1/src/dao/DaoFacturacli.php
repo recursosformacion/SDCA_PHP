@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoFacturacli
 * File Name:        DaoFacturacli.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     tipo_facturacli
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoFacturacli"
-class DaoFacturacli extends DaoBase{
+class DaoFacturacli extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM tipo_facturacli  ORDER BY tfc_nombre";
-	const SELECT_WHERE = "SELECT * FROM FROM tipo_facturacli WHERE :where  ORDER BY tfc_nombre";
-	const SELECT_UNO = "SELECT * FROM  tipo_facturacli  WHERE id_tipofacturacli = :id";
-	const INSERTAR = "INSERT into tipo_facturacli values (id_tipofacturacli,tfc_nombre,tfc_poriva,tfc_porretencion,)";
-	const ACTUALIZA = "UPDATE tipo_facturacli  set tfc_nombre= :tfc_nombre,tfc_poriva= :tfc_poriva,tfc_porretencion= :tfc_porretencion,
-                                        WHERE id_tipofacturacli = :id ";
-	const DELETE = "DELETE FROM tipo_facturacli WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM tipo_facturacli  ORDER BY tfc_nombre";
+	const SELECT_WHERE	 = "SELECT * FROM FROM tipo_facturacli WHERE :where  ORDER BY tfc_nombre";
+	const SELECT_UNO 	 = "SELECT * FROM  tipo_facturacli  WHERE id_tipofacturacli = :id_tipofacturacli ";
+	const INSERTAR 	 = "INSERT into tipo_facturacli values (:id_tipofacturacli,:tfc_nombre,:tfc_poriva,:tfc_porretencion)";
+	const ACTUALIZA 	 = "UPDATE tipo_facturacli  set tfc_nombre= :tfc_nombre,tfc_poriva= :tfc_poriva,tfc_porretencion= :tfc_porretencion
+                                        WHERE id_tipofacturacli = :id_tipofacturacli  ";
+	const DELETE 	 = "DELETE FROM tipo_facturacli WHERE id_tipofacturacli = :id_tipofacturacli ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Tipo_facturacli");
+		parent::__construct ("App\modelos\Tipo_facturacli");
 	}
 	
 	// Class Destructor
@@ -47,13 +50,14 @@ class DaoFacturacli extends DaoBase{
 		$stmt->bindValue (':tfc_poriva', $modelo->getTfc_poriva ());
 		$stmt->bindValue (':tfc_porretencion', $modelo->getTfc_porretencion ());
 		
+		
 		return $stmt;
 	}
 	
 	// Montar para DELETE SQL
 	public function montaBindDel (string $orden, $modelo): PDOStatement {
 		$stmt = $this->pdo->prepare ($orden);
-		$stmt->bindValue (':id', $modelo->getId_tipofacturacli ());
+		$stmt->bindValue (':id_tipofacturacli', $modelo->getId_tipofacturacli ());
 		
 		return $stmt;
 	}
@@ -65,7 +69,6 @@ class DaoFacturacli extends DaoBase{
 		$stmt = str_replace (':tfc_nombre', $modelo->getTfc_nombre (),$stmt);
 		$stmt = str_replace (':tfc_poriva', $modelo->getTfc_poriva (),$stmt);
 		$stmt = str_replace (':tfc_porretencion', $modelo->getTfc_porretencion (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId_tipofacturacli (),$stmt);
 		
 		return $stmt;
 	}

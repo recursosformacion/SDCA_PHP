@@ -25,5 +25,12 @@
 	"config" : {
 		"process-timeout" : 0,
 		"sort-packages" : true
-	}
+	},
+	"name" : "SDCA",
+	"description" : "Sistema de gestion contable para autonomos",
+	"homepage" : "https://recursosformacion.com/wordpress/?s=sdca",
+	"keywords" : [
+		"contabilidad",
+		"autonomos"
+	]
 }

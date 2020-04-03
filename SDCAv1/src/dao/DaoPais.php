@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoPais
 * File Name:        DaoPais.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     cp_pais
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoPais"
-class DaoPais extends DaoBase{
+class DaoPais extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM cp_pais  ORDER BY iso2";
-	const SELECT_WHERE = "SELECT * FROM FROM cp_pais WHERE :where  ORDER BY iso2";
-	const SELECT_UNO = "SELECT * FROM  cp_pais  WHERE country_id = :id";
-	const INSERTAR = "INSERT into cp_pais values (country_id,iso2,short_name,spanish_name,calling_code,cctld,iso3,long_name,numcode,un_member,)";
-	const ACTUALIZA = "UPDATE cp_pais  set iso2= :iso2,short_name= :short_name,spanish_name= :spanish_name,calling_code= :calling_code,cctld= :cctld,iso3= :iso3,long_name= :long_name,numcode= :numcode,un_member= :un_member,
-                                        WHERE country_id = :id ";
-	const DELETE = "DELETE FROM cp_pais WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM cp_pais  ORDER BY iso2";
+	const SELECT_WHERE	 = "SELECT * FROM FROM cp_pais WHERE :where  ORDER BY iso2";
+	const SELECT_UNO 	 = "SELECT * FROM  cp_pais  WHERE country_id = :country_id ";
+	const INSERTAR 	 = "INSERT into cp_pais values (:country_id,:iso2,:short_name,:spanish_name,:calling_code,:cctld,:iso3,:long_name,:numcode,:un_member)";
+	const ACTUALIZA 	 = "UPDATE cp_pais  set iso2= :iso2,short_name= :short_name,spanish_name= :spanish_name,calling_code= :calling_code,cctld= :cctld,iso3= :iso3,long_name= :long_name,numcode= :numcode,un_member= :un_member
+                                        WHERE country_id = :country_id  ";
+	const DELETE 	 = "DELETE FROM cp_pais WHERE country_id = :country_id ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Cp_pais");
+		parent::__construct ("App\modelos\Cp_pais");
 	}
 	
 	// Class Destructor
@@ -53,13 +56,14 @@ class DaoPais extends DaoBase{
 		$stmt->bindValue (':numcode', $modelo->getNumcode ());
 		$stmt->bindValue (':un_member', $modelo->getUn_member ());
 		
+		
 		return $stmt;
 	}
 	
 	// Montar para DELETE SQL
 	public function montaBindDel (string $orden, $modelo): PDOStatement {
 		$stmt = $this->pdo->prepare ($orden);
-		$stmt->bindValue (':id', $modelo->getCountry_id ());
+		$stmt->bindValue (':country_id', $modelo->getCountry_id ());
 		
 		return $stmt;
 	}
@@ -77,7 +81,6 @@ class DaoPais extends DaoBase{
 		$stmt = str_replace (':long_name', $modelo->getLong_name (),$stmt);
 		$stmt = str_replace (':numcode', $modelo->getNumcode (),$stmt);
 		$stmt = str_replace (':un_member', $modelo->getUn_member (),$stmt);
-		$stmt = str_replace (':id', $modelo->getCountry_id (),$stmt);
 		
 		return $stmt;
 	}

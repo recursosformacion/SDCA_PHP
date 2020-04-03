@@ -1,14 +1,12 @@
 <?php
 declare (strict_types = 1);
-namespace App\modelo;
-
-use App\modelos\ModeloBase;
+namespace App\modelos;
 
 
 /*******************************************************************************
 * Class Name:       Tipo_proveedor
 * File Name:        Tipo_proveedor.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     tipo_proveedor
 *   - in Database:  contabilidadautonomos
 * Created by: table2class 
@@ -16,6 +14,9 @@ use App\modelos\ModeloBase;
 
 // Files required by class:
 require_once ("ModeloBase.php");
+
+use App\modelos\ModeloBase;
+
 
 // Begin Class "Tipo_proveedor"
 class Tipo_proveedor extends ModeloBase{

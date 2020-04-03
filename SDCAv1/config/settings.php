@@ -7,7 +7,7 @@ ini_set('display_errors', '0');
 // Timezone
 date_default_timezone_set('Europe/Madrid');
 
-define('__ROOT__', dirname(dirname(__FILE__)));
+defined('__ROOT__') or define('__ROOT__', dirname(dirname(__FILE__)));
 
 // Settings
 $settings = [];

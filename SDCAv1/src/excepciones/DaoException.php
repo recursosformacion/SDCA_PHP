@@ -1,5 +1,5 @@
 <?php
-namespace service;
+namespace excepciones;
 
 use Exception;
 

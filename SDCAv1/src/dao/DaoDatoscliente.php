@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoDatoscliente
 * File Name:        DaoDatoscliente.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     datoscliente
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoDatoscliente"
-class DaoDatoscliente extends DaoBase{
+class DaoDatoscliente extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM datoscliente  ORDER BY dc_nombre";
-	const SELECT_WHERE = "SELECT * FROM FROM datoscliente WHERE :where  ORDER BY dc_nombre";
-	const SELECT_UNO = "SELECT * FROM  datoscliente  WHERE id_cliente = :id";
-	const INSERTAR = "INSERT into datoscliente values (id_cliente,dc_nombre,dc_direccion,dc_cpostal,dc_poblacion,dc_tipocliente,dc_correoelectronico,dc_idfiscal,)";
-	const ACTUALIZA = "UPDATE datoscliente  set dc_nombre= :dc_nombre,dc_direccion= :dc_direccion,dc_cpostal= :dc_cpostal,dc_poblacion= :dc_poblacion,dc_tipocliente= :dc_tipocliente,dc_correoelectronico= :dc_correoelectronico,dc_idfiscal= :dc_idfiscal,
-                                        WHERE id_cliente = :id ";
-	const DELETE = "DELETE FROM datoscliente WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM datoscliente  ORDER BY dc_nombre";
+	const SELECT_WHERE	 = "SELECT * FROM FROM datoscliente WHERE :where  ORDER BY dc_nombre";
+	const SELECT_UNO 	 = "SELECT * FROM  datoscliente  WHERE id_cliente = :id_cliente ";
+	const INSERTAR 	 = "INSERT into datoscliente values (:id_cliente,:dc_nombre,:dc_direccion,:dc_cpostal,:dc_poblacion,:dc_tipocliente,:dc_correoelectronico,:dc_idfiscal)";
+	const ACTUALIZA 	 = "UPDATE datoscliente  set dc_nombre= :dc_nombre,dc_direccion= :dc_direccion,dc_cpostal= :dc_cpostal,dc_poblacion= :dc_poblacion,dc_tipocliente= :dc_tipocliente,dc_correoelectronico= :dc_correoelectronico,dc_idfiscal= :dc_idfiscal
+                                        WHERE id_cliente = :id_cliente  ";
+	const DELETE 	 = "DELETE FROM datoscliente WHERE id_cliente = :id_cliente ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Datoscliente");
+		parent::__construct ("App\modelos\Datoscliente");
 	}
 	
 	// Class Destructor
@@ -51,13 +54,14 @@ class DaoDatoscliente extends DaoBase{
 		$stmt->bindValue (':dc_correoelectronico', $modelo->getDc_correoelectronico ());
 		$stmt->bindValue (':dc_idfiscal', $modelo->getDc_idfiscal ());
 		
+		
 		return $stmt;
 	}
 	
 	// Montar para DELETE SQL
 	public function montaBindDel (string $orden, $modelo): PDOStatement {
 		$stmt = $this->pdo->prepare ($orden);
-		$stmt->bindValue (':id', $modelo->getId_cliente ());
+		$stmt->bindValue (':id_cliente', $modelo->getId_cliente ());
 		
 		return $stmt;
 	}
@@ -73,7 +77,6 @@ class DaoDatoscliente extends DaoBase{
 		$stmt = str_replace (':dc_tipocliente', $modelo->getDc_tipocliente (),$stmt);
 		$stmt = str_replace (':dc_correoelectronico', $modelo->getDc_correoelectronico (),$stmt);
 		$stmt = str_replace (':dc_idfiscal', $modelo->getDc_idfiscal (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId_cliente (),$stmt);
 		
 		return $stmt;
 	}

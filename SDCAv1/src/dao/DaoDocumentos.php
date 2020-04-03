@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoDocumentos
 * File Name:        DaoDocumentos.php
-* Generated:        Friday, Mar 20, 2020 - 18:20:03 CET
+* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
 *  - for Table:     img_documentos
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,22 +16,25 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
+use App\dao\DaoBaseACT;
+
+
 // Begin Class "DaoDocumentos"
-class DaoDocumentos extends DaoBase{
+class DaoDocumentos extends DaoBaseACT{
 	
 	// ************ Declaracion de variables
-	const SELECT_ALL = "SELECT * FROM img_documentos  ORDER BY imgd_relacion";
-	const SELECT_WHERE = "SELECT * FROM FROM img_documentos WHERE :where  ORDER BY imgd_relacion";
-	const SELECT_UNO = "SELECT * FROM  img_documentos  WHERE id_documentos = :id";
-	const INSERTAR = "INSERT into img_documentos values (id_documentos,imgd_relacion,imgd_identificador,imgd_clasificador,imgd_path,imgd_descripcion,imgd_usuario,imgd_ult_access,)";
-	const ACTUALIZA = "UPDATE img_documentos  set imgd_relacion= :imgd_relacion,imgd_identificador= :imgd_identificador,imgd_clasificador= :imgd_clasificador,imgd_path= :imgd_path,imgd_descripcion= :imgd_descripcion,imgd_usuario= :imgd_usuario,imgd_ult_access= :imgd_ult_access,
-                                        WHERE id_documentos = :id ";
-	const DELETE = "DELETE FROM img_documentos WHERE cpcoa_id = :id";
+	const SELECT_ALL 	 = "SELECT * FROM img_documentos  ORDER BY imgd_relacion";
+	const SELECT_WHERE	 = "SELECT * FROM FROM img_documentos WHERE :where  ORDER BY imgd_relacion";
+	const SELECT_UNO 	 = "SELECT * FROM  img_documentos  WHERE id_documentos = :id_documentos ";
+	const INSERTAR 	 = "INSERT into img_documentos values (:id_documentos,:imgd_relacion,:imgd_identificador,:imgd_clasificador,:imgd_path,:imgd_descripcion,:imgd_usuario,:imgd_ult_access)";
+	const ACTUALIZA 	 = "UPDATE img_documentos  set imgd_relacion= :imgd_relacion,imgd_identificador= :imgd_identificador,imgd_clasificador= :imgd_clasificador,imgd_path= :imgd_path,imgd_descripcion= :imgd_descripcion,imgd_usuario= :imgd_usuario,imgd_ult_access= :imgd_ult_access
+                                        WHERE id_documentos = :id_documentos  ";
+	const DELETE 	 = "DELETE FROM img_documentos WHERE id_documentos = :id_documentos ";
 	
 	
 	// Class Constructor
 	public function __construct () {
-		parent::__construct ($connection,"modelos\Img_documentos");
+		parent::__construct ("App\modelos\Img_documentos");
 	}
 	
 	// Class Destructor
@@ -51,13 +54,14 @@ class DaoDocumentos extends DaoBase{
 		$stmt->bindValue (':imgd_usuario', $modelo->getImgd_usuario ());
 		$stmt->bindValue (':imgd_ult_access', $modelo->getImgd_ult_access ());
 		
+		
 		return $stmt;
 	}
 	
 	// Montar para DELETE SQL
 	public function montaBindDel (string $orden, $modelo): PDOStatement {
 		$stmt = $this->pdo->prepare ($orden);
-		$stmt->bindValue (':id', $modelo->getId_documentos ());
+		$stmt->bindValue (':id_documentos', $modelo->getId_documentos ());
 		
 		return $stmt;
 	}
@@ -73,7 +77,6 @@ class DaoDocumentos extends DaoBase{
 		$stmt = str_replace (':imgd_descripcion', $modelo->getImgd_descripcion (),$stmt);
 		$stmt = str_replace (':imgd_usuario', $modelo->getImgd_usuario (),$stmt);
 		$stmt = str_replace (':imgd_ult_access', $modelo->getImgd_ult_access (),$stmt);
-		$stmt = str_replace (':id', $modelo->getId_documentos (),$stmt);
 		
 		return $stmt;
 	}
