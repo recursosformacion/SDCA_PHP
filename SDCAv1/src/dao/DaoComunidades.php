@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoComunidades
 * File Name:        DaoComunidades.php
-* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
+* Generated:        Saturday, Apr 4, 2020 - 13:35:13 CEST
 *  - for Table:     cp_comunidades
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -14,7 +14,6 @@ namespace App\dao;
 
 // Files required by class:
 require_once ("DaoBase.php");
-
 
 use PDOStatement;
 use App\dao\DaoBase;
@@ -26,7 +25,7 @@ class DaoComunidades extends DaoBase{
 	// ************ Declaracion de variables
 	const SELECT_ALL 	 = "SELECT * FROM cp_comunidades  ORDER BY cpcoa_nombre";
 	const SELECT_WHERE	 = "SELECT * FROM FROM cp_comunidades WHERE :where  ORDER BY cpcoa_nombre";
-	const SELECT_UNO 	 = "SELECT * FROM  cp_comunidades  WHERE cpcoa_id = :id ";
+	const SELECT_UNO 	 = "SELECT * FROM  cp_comunidades  WHERE cpcoa_id = :cpcoa_id ";
 	const INSERTAR 	 = "INSERT into cp_comunidades values (:cpcoa_id,:cpcoa_nombre,:cpcoa_pais)";
 	const ACTUALIZA 	 = "UPDATE cp_comunidades  set cpcoa_nombre= :cpcoa_nombre,cpcoa_pais= :cpcoa_pais
                                         WHERE cpcoa_id = :cpcoa_id  ";

@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoPais
 * File Name:        DaoPais.php
-* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
+* Generated:        Saturday, Apr 4, 2020 - 13:35:13 CEST
 *  - for Table:     cp_pais
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,11 +16,11 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
-use App\dao\DaoBaseACT;
+use App\dao\DaoBase;
 
 
 // Begin Class "DaoPais"
-class DaoPais extends DaoBaseACT{
+class DaoPais extends DaoBase{
 	
 	// ************ Declaracion de variables
 	const SELECT_ALL 	 = "SELECT * FROM cp_pais  ORDER BY iso2";

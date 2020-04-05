@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoEmitidas
 * File Name:        DaoEmitidas.php
-* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
+* Generated:        Saturday, Apr 4, 2020 - 13:35:13 CEST
 *  - for Table:     facturas_emitidas
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,11 +16,11 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
-use App\dao\DaoBaseACT;
+use App\dao\DaoBase;
 
 
 // Begin Class "DaoEmitidas"
-class DaoEmitidas extends DaoBaseACT{
+class DaoEmitidas extends DaoBase{
 	
 	// ************ Declaracion de variables
 	const SELECT_ALL 	 = "SELECT * FROM facturas_emitidas  ORDER BY fe_identificador";

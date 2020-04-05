@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoRecibidas
 * File Name:        DaoRecibidas.php
-* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
+* Generated:        Saturday, Apr 4, 2020 - 13:35:13 CEST
 *  - for Table:     facturas_recibidas
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,11 +16,11 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
-use App\dao\DaoBaseACT;
+use App\dao\DaoBase;
 
 
 // Begin Class "DaoRecibidas"
-class DaoRecibidas extends DaoBaseACT{
+class DaoRecibidas extends DaoBase{
 	
 	// ************ Declaracion de variables
 	const SELECT_ALL 	 = "SELECT * FROM facturas_recibidas  ORDER BY fr_identificador";

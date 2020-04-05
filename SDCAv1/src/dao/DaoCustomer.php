@@ -6,7 +6,7 @@ namespace App\dao;
 /*******************************************************************************
 * Class Name:       DaoCustomer
 * File Name:        DaoCustomer.php
-* Generated:        Thursday, Apr 2, 2020 - 19:30:36 CEST
+* Generated:        Saturday, Apr 4, 2020 - 13:35:13 CEST
 *  - for Table:     customer
 *   - in Database:  contabilidadautonomos
 * Created by: Daoclass 
@@ -16,11 +16,11 @@ namespace App\dao;
 require_once ("DaoBase.php");
 
 use PDOStatement;
-use App\dao\DaoBaseACT;
+use App\dao\DaoBase;
 
 
 // Begin Class "DaoCustomer"
-class DaoCustomer extends DaoBaseACT{
+class DaoCustomer extends DaoBase{
 	
 	// ************ Declaracion de variables
 	const SELECT_ALL 	 = "SELECT * FROM customer  ORDER BY password";
