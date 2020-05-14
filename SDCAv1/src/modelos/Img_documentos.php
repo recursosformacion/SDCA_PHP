@@ -36,7 +36,7 @@ class Img_documentos extends ModeloBase{
 	
 	
 	// Class Constructor
-	public function __construct (int $id_documentos = null,enum ('FR','FE','CO','PE','AL','') $imgd_relacion = null,int $imgd_identificador = null,string $imgd_clasificador = null,string $imgd_path = null,string $imgd_descripcion = null,int $imgd_usuario = null,int $imgd_ult_access = null) {
+	public function __construct (int $id_documentos = null,string $imgd_relacion = null,int $imgd_identificador = null,string $imgd_clasificador = null,string $imgd_path = null,string $imgd_descripcion = null,int $imgd_usuario = null,int $imgd_ult_access = null) {
 		parent::__construct ("Img_documentos");
 		if (func_num_args () > 0) {
 			$this->setId_documentos ($id_documentos);
@@ -64,8 +64,8 @@ class Img_documentos extends ModeloBase{
 		return (int) $this->id_documentos;
 	}
 	
-	public function getImgd_relacion ():enum ('FR','FE','CO','PE','AL','') {
-		return (enum ('FR','FE','CO','PE','AL','')) $this->imgd_relacion;
+	public function getImgd_relacion (): string {
+		return (string) $this->imgd_relacion;
 	}
 	
 	public function getImgd_identificador ():int {
@@ -101,7 +101,7 @@ class Img_documentos extends ModeloBase{
 		$this->id_documentos = $id_documentos;
 	}
 	
-	public function setImgd_relacion (enum ('FR','FE','CO','PE','AL','') $imgd_relacion):void {
+	public function setImgd_relacion (string $imgd_relacion):void {
 		$this->imgd_relacion = $imgd_relacion;
 	}
 	
@@ -148,7 +148,7 @@ class Img_documentos extends ModeloBase{
 	public static function setFromArray (array $datos) : Img_documentos {
 		$resp = new self ();
 		$resp->setId_documentos ( (int) $datos['id_documentos']);
-		$resp->setImgd_relacion ( (enum ('FR','FE','CO','PE','AL','')) $datos['imgd_relacion']);
+		$resp->setImgd_relacion ( (string) $datos['imgd_relacion']);
 		$resp->setImgd_identificador ( (int) $datos['imgd_identificador']);
 		$resp->setImgd_clasificador ( (string) $datos['imgd_clasificador']);
 		$resp->setImgd_path ( (string) $datos['imgd_path']);
