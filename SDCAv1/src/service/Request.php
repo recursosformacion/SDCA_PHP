@@ -1,5 +1,5 @@
 <?php
-namespace service;
+namespace App\service;
 
 class Request
 {
