@@ -2,11 +2,12 @@
 	"require" : {
 		"cakephp/chronos" : "^2.0",
 		"lcobucci/jwt" : "^3.3",
-		"php-di/php-di" : "^6.1",
+		"php-di/php-di" : "^6.2",
 		"ramsey/uuid" : "^3.9",
+		"selective/basepath" : "^1.0",
 		"selective/config" : "^0.2.0",
 		"slim/http" : "^1.0",
-		"slim/psr7" : "^1.0",
+		"slim/psr7" : "^1.1",
 		"slim/slim" : "4.*"
 	},
 	"require-dev" : {
@@ -26,7 +27,7 @@
 		"process-timeout" : 0,
 		"sort-packages" : true
 	},
-	"name" : "SDCA",
+	"name" : "rf/sdca_v1",
 	"description" : "Sistema de gestion contable para autonomos",
 	"homepage" : "https://recursosformacion.com/wordpress/?s=sdca",
 	"keywords" : [
